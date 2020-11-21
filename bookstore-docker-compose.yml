@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  webapp:
+    image: book-store
+    build: Dockerfile
+    #    links:
+    #      - "db:database"
+    environment:
+      DB_HOST: db
+    ports:
+      - 1212:8080
+    networks:
+      - book-store-network
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: demo
+    ports:
+      - 3306:3306
+    networks:
+      - book-store-network
+networks:
+  book-store-network: {}
